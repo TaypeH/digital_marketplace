@@ -6,9 +6,13 @@ import {
     SheetTrigger,
     SheetContent,
     SheetHeader,
+    SheetFooter,
     SheetTitle
 } from './ui/sheet'
+import Link from 'next/link'
+import { buttonVariants } from './ui/button'
 import { Separator } from './ui/separator'
+import { formatPrice } from '@/lib/utils'
 
 const Cart = () => {
     const itemCount = 1
@@ -48,15 +52,27 @@ const Cart = () => {
                                         <span className='flex-1'>
                                             Transaction Fee
                                         </span>
-                                        <span>1</span>
+                                        <span>{formatPrice(1)}</span>
                                     </div>
                                     <div className='flex'>
                                         <span className='flex-1'>Total</span>
                                         <span>
-                                            1
+                                            {formatPrice(1)}
                                         </span>
                                     </div>
                                 </div>
+
+                                <SheetFooter>
+                                    <SheetTrigger asChild>
+                                        <Link
+                                            href='/cart'
+                                            className={buttonVariants({
+                                                className: 'w-full',
+                                            })}>
+                                            Continue to Checkout
+                                        </Link>
+                                    </SheetTrigger>
+                                </SheetFooter>
                             </div>
                         </>
                     ) : null}
